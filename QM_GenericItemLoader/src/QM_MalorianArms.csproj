@@ -7,7 +7,7 @@
   </PropertyGroup>
 	<PropertyGroup>
 		<GAME_NAME>Quasimorph</GAME_NAME>
-		<MOD_ID></MOD_ID>
+		<MOD_ID>3416634585</MOD_ID>
 	</PropertyGroup>
 	<PropertyGroup>
 		<GAME_PATH>D:\SteamLibrary\steamapps\common\$(GAME_NAME)</GAME_PATH>

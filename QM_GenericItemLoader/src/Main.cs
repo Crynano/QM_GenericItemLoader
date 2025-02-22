@@ -3,7 +3,7 @@ using QM_WeaponImporter;
 using System.IO;
 using System.Reflection;
 
-namespace QM_GenericItemLoader
+namespace QM_MalorianArms
 {
     public static class Main
     {
@@ -17,7 +17,7 @@ namespace QM_GenericItemLoader
 
         private static void LoadItems()
         {
-            API.LoadModConfig("QM_GenericItemLoader", AssemblyFolder);
+            API.LoadModConfig("QM_MalorianArms", AssemblyFolder);
         }
     }
 }
