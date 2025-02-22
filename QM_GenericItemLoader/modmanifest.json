@@ -1,0 +1,7 @@
+{
+  "UniqueModName": "QM_GenericItemLoader",
+  "Assemblies": [
+    "QM_GenericItemLoader.dll"
+  ],
+  "Dependencies": []
+}
