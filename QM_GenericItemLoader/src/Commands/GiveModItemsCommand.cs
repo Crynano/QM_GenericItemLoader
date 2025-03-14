@@ -4,10 +4,10 @@ using System.Linq;
 using UnityEngine;
 using MGSC;
 
-namespace QM_ExpandedFactionArsenal
+namespace QM_CrynanoMoreInjectors
 {
-    [ConsoleCommand(new string[] { "allefaitems" })]
-    public class GiveEFAItemsCommand
+    [ConsoleCommand(new string[] { "giveallinjectors" })]
+    public class GiveModItemsCommand
     {
         [Inject(false)]
         private readonly MagnumCargo _magnumCargo;
@@ -20,14 +20,14 @@ namespace QM_ExpandedFactionArsenal
 
         public static string Help(string command, bool verbose)
         {
-            return "Spawn all Expanded Faction Arsenal (EFA) items.";
+            return "Spawn all More Injectors items.";
         }
 
         public string Execute(string[] tokens)
         {
             try
             {
-                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.StartsWith("efa_"));
+                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.StartsWith("mi_"));
                 foreach(var weaponId in listOfEFAWeapons)
                 {
                     BasePickupItem basePickupItem = SingletonMonoBehaviour<ItemFactory>.Instance.CreateForInventory(weaponId);
@@ -41,7 +41,7 @@ namespace QM_ExpandedFactionArsenal
                         ItemOnFloorSystem.SpawnItem(_itemsOnFloor, basePickupItem, player.CreatureData.Position);
                     }
                 }
-                return "Added all Expanded Faction Arsenal (EFA) weapons successfully.";
+                return "Added all More Injector items successfully.";
             }
             catch (NullReferenceException exception)
             {

@@ -3,7 +3,7 @@ using QM_WeaponImporter;
 using System.IO;
 using System.Reflection;
 
-namespace QM_ExpandedFactionArsenal
+namespace QM_CrynanoMoreInjectors
 {
     public static class Main
     {
@@ -17,7 +17,7 @@ namespace QM_ExpandedFactionArsenal
 
         private static void LoadItems()
         {
-            API.LoadModConfig("QM_ExpandedFactionArsenal", AssemblyFolder);
+            API.LoadModConfig("QM_CrynanoMoreInjectors", AssemblyFolder);
         }
     }
 }
