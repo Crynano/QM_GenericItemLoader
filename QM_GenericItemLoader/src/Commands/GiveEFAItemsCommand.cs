@@ -20,7 +20,7 @@ namespace QM_ExpandedFactionArsenal
 
         public static string Help(string command, bool verbose)
         {
-            return "Spawn all Expanded Faction Armory items.";
+            return "Spawn all Expanded Faction Arsenal (EFA) items.";
         }
 
         public string Execute(string[] tokens)
@@ -41,7 +41,7 @@ namespace QM_ExpandedFactionArsenal
                         ItemOnFloorSystem.SpawnItem(_itemsOnFloor, basePickupItem, player.CreatureData.Position);
                     }
                 }
-                return "Added all EFA weapons successfully.";
+                return "Added all Expanded Faction Arsenal (EFA) weapons successfully.";
             }
             catch (NullReferenceException exception)
             {
