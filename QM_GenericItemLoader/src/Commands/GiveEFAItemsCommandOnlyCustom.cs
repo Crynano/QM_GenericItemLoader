@@ -6,8 +6,8 @@ using MGSC;
 
 namespace QM_ExpandedFactionArsenal
 {
-    [ConsoleCommand(new string[] { "allefaitems" })]
-    public class GiveEFAItemsCommand
+    [ConsoleCommand(new string[] { "allefaitemscustom" })]
+    public class GiveCustomEFAItemsCommand
     {
         [Inject(false)]
         private readonly MagnumCargo _magnumCargo;
@@ -20,15 +20,15 @@ namespace QM_ExpandedFactionArsenal
 
         public static string Help(string command, bool verbose)
         {
-            return "Spawn all unmodified Expanded Faction Arsenal (EFA) items.";
+            return "Spawn all modified Expanded Faction Arsenal (EFA) items.";
         }
 
         public string Execute(string[] tokens)
         {
             try
             {
-                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.StartsWith("efa_") && !x.EndsWith("_custom"));
-                foreach (var weaponId in listOfEFAWeapons)
+                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.StartsWith("efa_") && x.EndsWith("_custom"));
+                foreach(var weaponId in listOfEFAWeapons)
                 {
                     BasePickupItem basePickupItem = SingletonMonoBehaviour<ItemFactory>.Instance.CreateForInventory(weaponId);
                     if (SingletonMonoBehaviour<DungeonGameMode>.Instance == null)
@@ -41,7 +41,7 @@ namespace QM_ExpandedFactionArsenal
                         ItemOnFloorSystem.SpawnItem(_itemsOnFloor, basePickupItem, player.CreatureData.Position);
                     }
                 }
-                return "Added all unmodified Expanded Faction Arsenal (EFA) weapons successfully.";
+                return "Added all modified Expanded Faction Arsenal (EFA) weapons successfully.";
             }
             catch (NullReferenceException exception)
             {
