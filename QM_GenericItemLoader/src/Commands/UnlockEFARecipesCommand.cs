@@ -21,7 +21,7 @@ namespace QM_ExpandedFactionArsenal
         {
             try
             {
-                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.StartsWith("efa_"));
+                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.Contains("_efa_"));
                 foreach (var weaponId in listOfEFAWeapons)
                 {
                     if (!_magnumCargo.UnlockedProductionItems.Contains(weaponId)) _magnumCargo.UnlockedProductionItems.Add(weaponId);

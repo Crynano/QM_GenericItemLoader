@@ -27,7 +27,7 @@ namespace QM_ExpandedFactionArsenal
         {
             try
             {
-                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.StartsWith("efa_") && !x.EndsWith("_custom"));
+                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.Contains("_efa_") && !x.EndsWith("_custom"));
                 foreach (var weaponId in listOfEFAWeapons)
                 {
                     BasePickupItem basePickupItem = SingletonMonoBehaviour<ItemFactory>.Instance.CreateForInventory(weaponId);
