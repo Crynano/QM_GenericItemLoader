@@ -1,7 +1,4 @@
 ﻿using MGSC;
-using QM_WeaponImporter;
-using System.IO;
-using System.Reflection;
 
 namespace QM_ExpandedFactionArsenal
 {
@@ -10,7 +7,7 @@ namespace QM_ExpandedFactionArsenal
         [Hook(ModHookType.AfterConfigsLoaded)]
         public static void AfterConfig(IModContext context)
         {
-            API.LoadModConfig("QM_ExpandedFactionArsenal", context);
+            QM_ImporterAPI.Services.ImporterApi.LoadModFromContext(context);
         }
     }
 }

@@ -9,14 +9,13 @@ namespace QM_ExpandedFactionArsenal
     [ConsoleCommand(new string[] { "allefaitems" })]
     public class GiveEFAItemsCommand
     {
-        [Inject(false)]
-        private readonly MagnumCargo _magnumCargo;
+        [Inject(false)] private readonly MagnumCargo _magnumCargo;
 
-        [Inject(false, AllowNull = true)]
-        private readonly Creatures _creatures;
+        [Inject(false, AllowNull = true)] private readonly MapGrid _mapGrid;
 
-        [Inject(false, AllowNull = true)]
-        private readonly ItemsOnFloor _itemsOnFloor;
+        [Inject(false, AllowNull = true)] private readonly Creatures _creatures;
+
+        [Inject(false, AllowNull = true)] private readonly ItemsOnFloor _itemsOnFloor;
 
         public static string Help(string command, bool verbose)
         {
@@ -27,18 +26,20 @@ namespace QM_ExpandedFactionArsenal
         {
             try
             {
-                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.Contains("_efa_") && !x.EndsWith("_custom"));
+                var listOfEFAWeapons = Data.Items.Ids.Where(x => x.Contains("_efa_") && !x.EndsWith("_custom"));
+                bool isInInventory = SingletonMonoBehaviour<DungeonGameMode>.Instance == null;
+                var player = _creatures.Player;
+
                 foreach (var weaponId in listOfEFAWeapons)
                 {
-                    BasePickupItem basePickupItem = SingletonMonoBehaviour<ItemFactory>.Instance.CreateForInventory(weaponId);
-                    if (SingletonMonoBehaviour<DungeonGameMode>.Instance == null)
+                    var basePickupItem = SingletonMonoBehaviour<ItemFactory>.Instance.CreateForInventory(weaponId);
+                    if (isInInventory)
                     {
                         _magnumCargo.ShipCargo[0].AddItemAndReshuffleOptional(basePickupItem);
                     }
                     else
                     {
-                        Player player = _creatures.Player;
-                        ItemOnFloorSystem.SpawnItem(_itemsOnFloor, basePickupItem, player.CreatureData.Position);
+                        ItemOnFloorSystem.SpawnItem(_itemsOnFloor, _mapGrid, basePickupItem, player.CreatureData.Position);
                     }
                 }
                 return "Added all unmodified Expanded Faction Arsenal (EFA) weapons successfully.";

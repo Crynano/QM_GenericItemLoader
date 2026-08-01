@@ -28,9 +28,8 @@
 			<HintPath>$(ManagedPath)Assembly-CSharp.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="QM_WeaponImporter">
-		  <HintPath>$(GAME_PATH)\..\..\workshop\content\2059170\3284022031\QM_WeaponImporter.dll</HintPath>
-			<HintPath>$(GAME_PATH)\..\..\workshop\content\2059170\3287769471\QM_WeaponImporter.dll</HintPath>
+		<Reference Include="QM_ImporterAPI">
+		  <HintPath>$(GAME_PATH)\..\..\workshop\content\2059170\3671320495\QM_ImporterAPI.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
 			<SpecificVersion>False</SpecificVersion>
