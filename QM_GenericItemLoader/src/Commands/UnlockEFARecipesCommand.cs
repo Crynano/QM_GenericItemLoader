@@ -21,17 +21,16 @@ namespace QM_ExpandedFactionArsenal
         {
             try
             {
-                var listOfEFAWeapons = Data.Items.Ids.ToList().Where(x => x.Contains("_efa_"));
-                foreach (var weaponId in listOfEFAWeapons)
-                {
-                    if (!_magnumCargo.UnlockedProductionItems.Contains(weaponId)) _magnumCargo.UnlockedProductionItems.Add(weaponId);
-                }
+                if (SingletonMonoBehaviour<SpaceGameMode>.Instance == null) return "ERROR: Command can only be executed while in Space Mode";
+
+                var listOfEFAWeapons = Data.Items.Ids.Where(x => x.Contains("_efa_"));
+                _magnumCargo.UnlockedProductionItems.AddRange(listOfEFAWeapons.Where(weaponId => !_magnumCargo.UnlockedProductionItems.Contains(weaponId)));
                 return "Unlocked all Expanded Faction Arsenal (EFA) crafting recipes successfully.";
             }
             catch (NullReferenceException exception)
             {
                 string msg = $"ERROR: Something unexpected happened.";
-                Debug.Log(msg);
+                Debug.LogError(exception);
                 return msg;
             }
         }
